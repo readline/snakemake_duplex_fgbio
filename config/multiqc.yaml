@@ -1,0 +1,5 @@
+run_modules:
+  - fastp
+sp:
+  fastp:
+    fn: "*.QC.json"

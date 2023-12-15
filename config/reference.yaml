@@ -1,0 +1,5 @@
+cachedir: cache
+references:
+    gatkbundle:
+        link:   /fdb/GATK_resource_bundle/hg38-v0
+        path:   reference/hg38

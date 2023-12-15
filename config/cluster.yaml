@@ -1,0 +1,83 @@
+__default__:
+    partition: norm
+    threads: 4
+    mem: 16g
+    time: '2-00:00:00'
+    gres: 'lscratch:50'
+
+Merge1:
+    partition: norm
+    threads: 4
+    mem: 8g
+    time: '2-00:00:00'
+    gres: 'lscratch:10'
+
+Merge2:
+    partition: norm
+    threads: 4
+    mem: 8g
+    time: '2-00:00:00'
+    gres: 'lscratch:10'
+
+Fastp:
+    partition: norm
+    threads: 8
+    mem: 16g
+    time: '2-00:00:00'
+    gres: 'lscratch:100'
+
+FastqToBam:
+    partition: norm
+    threads: 4
+    mem: 16g
+    time: '2-00:00:00'
+    gres: 'lscratch:100'
+
+Align_unmapped:
+    partition: norm
+    threads: 32
+    mem: 64g
+    time: '2-00:00:00'
+    gres: 'lscratch:100'
+
+GroupReadsByUmi:
+    partition: norm
+    threads: 4
+    mem: 16g
+    time: '2-00:00:00'
+    gres: 'lscratch:100'
+
+CallDuplexConsensusReads:
+    partition: norm
+    threads: 16
+    mem: 32g
+    time: '2-00:00:00'
+    gres: 'lscratch:100'
+
+CollectDuplexSeqMetrics:
+    partition: norm
+    threads: 4
+    mem: 16g
+    time: '2-00:00:00'
+    gres: 'lscratch:100'
+
+Align_consensus:
+    partition: norm
+    threads: 32
+    mem: 64g
+    time: '2-00:00:00'
+    gres: 'lscratch:100'
+
+Multiqc:
+    partition: norm
+    threads: 8
+    mem: 16g
+    time: '2-00:00:00'
+    gres: 'lscratch:100'
+
+Merge_summary:
+    partition: norm
+    threads: 2
+    mem: 4g
+    time: '2-00:00:00'
+    gres: 'lscratch:10'

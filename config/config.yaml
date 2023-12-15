@@ -1,0 +1,8 @@
+samplesheet:
+    samplesheet.tsv
+
+workdir:
+    /path/to/workdir
+
+bindpath:
+    /vf,/spin1,/data,/fdb,/gpfs,/lscratch

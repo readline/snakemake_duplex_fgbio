@@ -1,0 +1,3 @@
+sample	run	read1	read2
+TW01-01	TW01-01_L001	/path/to/fastq/TW01-01_S1_L001_R1_001.fastq.gz	/path/to/fastq/TW01-01_S1_L001_R2_001.fastq.gz
+TW01-01	TW01-01_L002	/path/to/fastq/TW01-01_S1_L002_R1_001.fastq.gz	/path/to/fastq/TW01-01_S1_L002_R2_001.fastq.gz
