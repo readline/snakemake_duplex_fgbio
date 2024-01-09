@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32g
-#SBATCH --time=0-12:00:00
+#SBATCH --time=5-12:00:00
 #SBATCH --parsable
 #SBATCH -J "[[PIPENICKNAME]]"
 #SBATCH --mail-type=BEGIN,END,FAIL

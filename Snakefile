@@ -87,6 +87,8 @@ rule Fastp:
         reads1 = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.R1.fq.gz"),
         reads2 = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.R2.fq.gz"),
     output:
+        reads1 = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.R1.cln.fq.gz"),
+        reads2 = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.R2.cln.fq.gz"),
         htmlout = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.QC.html"),
         jsonout = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.QC.json"),
     log:
@@ -100,24 +102,26 @@ rule Fastp:
         '''
         fastp -i {input.reads1} \
             -I {input.reads2} \
-            --stdout \
+            -o {output.reads1} \
+            -O {output.reads2} \
             -h {output.htmlout} \
             -j {output.jsonout} \
+            -l 30 \
             -w {threads} \
             >> /dev/null 2> {log.err}
         '''
 
 rule FastqToBam:
     input:
-        reads1 = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.R1.fq.gz"),
-        reads2 = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.R2.fq.gz"),
+        reads1 = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.R1.cln.fq.gz"),
+        reads2 = join(config['workdir'], "01.MergeData", "{sample}", "{sample}.R2.cln.fq.gz"),
     output:
         bam    = join(config['workdir'], "02.Duplex", "{sample}", "{sample}.unmapped.bam"),
     params:
         structure = config['structure']
     log:
-        out = join(config['pipelinedir'], "logs", "03.FastqToBam", "{sample}.o"),
-        err = join(config['pipelinedir'], "logs", "03.FastqToBam", "{sample}.e"),
+        out = join(config['pipelinedir'], "logs", "FastqToBam", "{sample}.o"),
+        err = join(config['pipelinedir'], "logs", "FastqToBam", "{sample}.e"),
     threads:
         int(allocated("threads", "FastqToBam", cluster))
     container:
@@ -125,7 +129,7 @@ rule FastqToBam:
     shell:
         '''
         fgbio \
-          -Xmx8g \
+          -Xmx6g \
           --tmp-dir=. \
           --async-io=true \
           --compression=1 \

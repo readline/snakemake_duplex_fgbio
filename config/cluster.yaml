@@ -7,15 +7,15 @@ __default__:
 
 Merge1:
     partition: norm
-    threads: 4
-    mem: 8g
+    threads: 2
+    mem: 4g
     time: '2-00:00:00'
     gres: 'lscratch:10'
 
 Merge2:
     partition: norm
-    threads: 4
-    mem: 8g
+    threads: 2
+    mem: 4g
     time: '2-00:00:00'
     gres: 'lscratch:10'
 
@@ -28,8 +28,8 @@ Fastp:
 
 FastqToBam:
     partition: norm
-    threads: 4
-    mem: 16g
+    threads: 2
+    mem: 8g
     time: '2-00:00:00'
     gres: 'lscratch:100'
 
