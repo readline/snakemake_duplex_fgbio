@@ -136,7 +136,7 @@ rule FastqToBam:
           FastqToBam \
             --input {input.reads1} {input.reads2} \
             --output {output.bam} \
-            --read-structures {params.structure} {params.structure} \
+            --read-structures {params.structure} \
             --sample {wildcards.sample} \
             --library {wildcards.sample}
         '''
