@@ -20,13 +20,18 @@ def main():
     parser.add_option("-E","--exclude",dest="maskbed",default=None,help="Directory to the exclude region bed file.")
     parser.add_option("-t","--twinstrand", action = "store_true",dest="chemistry_ts",default=None,help="Use Twinstrand chemistry. [Default]")
     parser.add_option("-T","--twist", action = "store_true",dest="chemistry_tw",default=None,help="Use Twist chemistry.")
-    parser.add_option("-U","--userspecified", dest="chemistry_us", default=None,help="Specify chemistry. [eg: '8M2S+T +T']")
+    parser.add_option("-U","--userspecified", dest="chemistry_us", default=None,help="Specify chemistry. Separate structure with comma. [eg: '12M2S+T,12M2S+T']")
     
     (options, args) = parser.parse_args()
 
-    if not options.chemistry_ts and not options.chemistry_tw:
+    if not options.chemistry_ts and not options.chemistry_tw and not options.chemistry_us:
         print('Chemistry not specified. Using Twinstrand by default.')
         options.chemistry_ts = True
+    if options.chemistry_us:
+        chemistry = 'us'
+        structure = options.chemistry_us.replace(',',' ')
+        if options.chemistry_ts or options.chemistry_tw:
+            print('User specified chemistry but detected --twinstrand or --twist. Using "%s".'%structure)
     if options.chemistry_ts:
         if options.chemistry_tw:
             raise Exception("--twinstrand and --twist cannot be specified together.")
@@ -35,10 +40,6 @@ def main():
     elif options.chemistry_tw:
         chemistry = 'tw'
         structure = '5M2S+T 5M2S+T'
-    elif options.chemistry_us:
-        chemistry = 'us'
-        structure = options.chemistry_us
-        
     
 
     #######################################################################################
